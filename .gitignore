@@ -1,0 +1,27 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+runtime/vnc-venv/
+
+# Local ROMs / saves / captures
+*.gb
+*.gbc
+*.sav
+*.srm
+runtime/qemu/*.ppm
+runtime/qemu/*.png
+runtime/qemu/*.bin
+runtime/qemu/saves/*.sav
+
+# VM artifacts
+runtime/qemu/holyred_fat_v4.img
+runtime/templeos/TempleOS_run.iso
+
+# Optional large source mirrors
+cppred/
+pokered/
+cherub/
