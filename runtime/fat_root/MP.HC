@@ -3,6 +3,8 @@
 #define MP_W 160
 #define MP_H 144
 #define MP_SCALE 2
+#define MP_PAD_X 2
+#define MP_PAD_Y 2
 
 class MPState
 {
@@ -210,7 +212,8 @@ U0 MPDraw(CTask *task, CDC *dc)
 {
   I64 x;
   I64 y;
-  DCFill(dc, WHITE);
+  dc->color = BLACK;
+  GrRect(dc, MP_PAD_X - 1, MP_PAD_Y - 1, MP_W * MP_SCALE + 2, MP_H * MP_SCALE + 2);
   if (!mp.ready)
     return;
   for (y = 0; y < MP_H; y++)
@@ -218,7 +221,7 @@ U0 MPDraw(CTask *task, CDC *dc)
     for (x = 0; x < MP_W; x++)
     {
       dc->color = MPColor(mp.fb[y * MP_W + x]);
-      GrRect(dc, x * MP_SCALE, y * MP_SCALE, MP_SCALE, MP_SCALE);
+      GrRect(dc, MP_PAD_X + x * MP_SCALE, MP_PAD_Y + y * MP_SCALE, MP_SCALE, MP_SCALE);
     }
   }
 }
@@ -275,7 +278,12 @@ U0 HolyRedManualPlay()
 
   SettingsPush;
   WinBorder;
-  WinMax;
+  StrCpy(Fs->task_name, "Red");
+  StrCpy(Fs->task_title, "Pokemon Red");
+  Fs->win_left = 2;
+  Fs->win_top = 2;
+  Fs->win_right = 78;
+  Fs->win_bottom = 60;
   DocCursor;
   DocClear;
   Fs->draw_it = &MPDraw;
