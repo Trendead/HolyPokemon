@@ -38,8 +38,8 @@ python runtime/qemu/run_mp_live.py
 - D-Pad: Arrow keys
 - A: `Z`
 - B: `X`
-- Start: `Enter`
-- Select: `Backspace`
+- Start: `A`
+- Select: `S`
 - Exit game script: `Shift+Esc`
 - Speed up / down: `W` / `Q`
 
