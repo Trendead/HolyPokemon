@@ -1,7 +1,6 @@
-# HolyC Pokemon Red (TempleOS)
+# HolyC Pokemon Red 
 
-This repo contains a TempleOS-targeted Game Boy emulator path focused on running real Pokemon Red with real gameplay and persistent save support.
-
+This repo contains a TempleOS targeted Game Boy emulator path focused on running real Pokemon Red.
 ## Quick Start
 
 1. Clone this repo and `cd` into it.
