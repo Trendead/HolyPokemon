@@ -4,11 +4,14 @@ from __future__ import annotations
 import socket
 import subprocess
 import time
+import os
 from pathlib import Path
 
-ROOT = Path("/Users/macbook/Desktop/HolyC_Pokemon/runtime")
+ROOT = Path(__file__).resolve().parents[1]
 IMG = ROOT / "qemu" / "holyred_fat_v4.img"
 ISO = ROOT / "templeos" / "TempleOS_run.iso"
+ROM_DEFAULT = ROOT / "roms" / "POKEMON.GB"
+ROM_ENV = "HOLY_RED_ROM"
 MON_HOST = "127.0.0.1"
 MON_PORT = 55622
 
@@ -87,10 +90,15 @@ def wait_monitor(timeout_s: float = 12.0) -> bool:
 
 
 def main() -> int:
+    rom_src = Path(os.environ.get(ROM_ENV, str(ROM_DEFAULT))).expanduser()
     subprocess.run(["pkill", "-f", "qemu-system-x86_64.*holyred_fat_v4.img"], check=False)
     subprocess.run(["mcopy", "-o", "-i", f"{IMG}@@512", str(ROOT / "fat_root" / "GBCPUX.HC"), "::GB3.HC"], check=False)
     subprocess.run(["mcopy", "-o", "-i", f"{IMG}@@512", str(ROOT / "fat_root" / "MP.HC"), "::MP.HC"], check=False)
     subprocess.run(["mcopy", "-o", "-i", f"{IMG}@@512", str(ROOT / "fat_root" / "RED.HC"), "::RED.HC"], check=False)
+    if rom_src.exists():
+        subprocess.run(["mcopy", "-o", "-i", f"{IMG}@@512", str(rom_src), "::POKEMON.GB"], check=False)
+    else:
+        print(f"ROM not found at {rom_src}. Using existing ::POKEMON.GB in image.")
 
     qemu = subprocess.Popen(
         [
@@ -173,6 +181,7 @@ def main() -> int:
     print("Connect VNC viewer to localhost:5901")
     print("VNC password: holyred")
     print("Game controls in TempleOS: Arrows, Z, X, Enter, Backspace. Shift-Esc exits game script.")
+    print(f"Set {ROM_ENV} to override ROM path, or place ROM at {ROM_DEFAULT}")
     print("Press Ctrl+C here to stop QEMU.")
 
     try:

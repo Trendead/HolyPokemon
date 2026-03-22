@@ -5,7 +5,7 @@ import argparse
 import subprocess
 from pathlib import Path
 
-ROOT = Path("/Users/macbook/Desktop/HolyC_Pokemon")
+ROOT = Path(__file__).resolve().parents[2]
 IMG = ROOT / "runtime" / "qemu" / "holyred_fat_v4.img"
 MTOOLS_DRIVE = f"{IMG}@@512"
 
