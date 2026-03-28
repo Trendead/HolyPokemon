@@ -1,5 +1,4 @@
-// Minimal LR35902 execution scaffold for early ROM tracing.
-// This is intentionally tiny and will be expanded opcode-by-opcode.
+
 
 #define GB_CORE_TAG 720
 #define GB_EXT_RAM_CAP 0x8000
