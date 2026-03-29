@@ -1,5 +1,3 @@
-
-
 #define GB_CORE_TAG 720
 #define GB_EXT_RAM_CAP 0x8000
 #define GB_SAVE_PATH "C:/POKEMON.SAV"
