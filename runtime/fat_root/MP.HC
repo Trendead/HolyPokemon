@@ -311,7 +311,6 @@ U0 HolyRedManualPlay()
   mp.quit = FALSE;
   Spawn(&MPFrameTask, NULL, "MP Frame",,);
 
-  Print("Manual mode controls:\n");
   Print("Arrows=D-Pad  Z=A  X=B  A=Start  S=Select\n");
   Print("W=faster  Q=slower\n");
   Print("Shift-Esc exits.\n");
